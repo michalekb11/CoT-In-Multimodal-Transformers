@@ -1,10 +1,15 @@
 # Chain of Thought Reasoning in Multimodal Transformers
 
 ## Overview
-Overview
+**What is chain of thought reasoning?** - Provide an example
+
+**Goal of this paper:** To show that not only is chain of thought prompting possible using a second modality, but also that the second modality can greatly improve performance (primarily in the generation of the rationale). 
 
 ## Architecture
 (Vision feature extractor + learned projection) & language embeddings
+
+## Results
+Brief description
 
 ## Critical Analysis
 Critiques about questions asked to language only model.
