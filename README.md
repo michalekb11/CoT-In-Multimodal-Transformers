@@ -1,9 +1,18 @@
 # Chain of Thought Reasoning in Multimodal Transformers
 
 ## Overview
-**What is chain of thought reasoning?** - Provide an example
+**tldr:** The authors show that chain of thought reasoning is possible in small multimodal transformers using a two-stage framework (1. Rationale generation | 2. Answer inference). Additionally, it outperforms humans and models like GPT 3.5 on a ScienceQA multiple choice benchmark by providing more reliable rationales. 
 
-**Goal of this paper:** To show that not only is chain of thought prompting possible using a second modality, but also that the second modality can greatly improve performance (primarily in the generation of the rationale). 
+**What is chain of thought reasoning (CoT)?**
+* Example or description
+
+**What are the limitations of CoT prompting in text only models?**
+* Hallucinating rationale
+* Maybe using multimodal CoT is better
+
+**How can we implement CoT promping in multimodal models?**
+* Two stage framework
+* Enables small 1B models to perform effective reasoning
 
 ## Architecture
 (Vision feature extractor + learned projection) & language embeddings
