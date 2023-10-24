@@ -18,4 +18,7 @@ Critiques about questions asked to language only model.
 Can mix this into rest of presentation
 
 ## Additional Resources
-Links
+DETR Vision Feature Extractor
+https://huggingface.co/docs/transformers/model_doc/detr
+
+
