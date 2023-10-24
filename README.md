@@ -1,1 +1,1 @@
-# CoT-In-Multimodal_Transformers
+# Chain of Thought Reasoning in Multimodal Transformers
