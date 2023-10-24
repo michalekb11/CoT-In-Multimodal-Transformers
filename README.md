@@ -42,6 +42,12 @@ What is one critique of this example, keeping in mind the baseline two-stage arc
 * Weakly supervise rationale generation instead of full annotation
 * Optimize for end task accuracy directly, not just rationale quality
 
+## Conclusion
+* Summarize key ideas and contributions
+* Multimodal-CoT enables small models to perform complex reasoning
+* Visual grounding improves rationale quality and answer accuracy
+* Promising direction for developing stronger reasoning abilities in models
+
 ## Questions
 Can mix this into rest of presentation
 
