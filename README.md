@@ -19,6 +19,6 @@ Can mix this into rest of presentation
 
 ## Additional Resources
 DETR Vision Feature Extractor
-https://huggingface.co/docs/transformers/model_doc/detr
+* https://huggingface.co/docs/transformers/model_doc/detr
 
 
