@@ -15,13 +15,32 @@
 * Enables small 1B models to perform effective reasoning
 
 ## Architecture
-(Vision feature extractor + learned projection) & language embeddings
+* Stage 1: Encode text and image, fuse features, generate rationale
+* Stage 2: Encode text + rationale from stage 1, fuse with image, predict answer
+* Shared encoder-decoder architecture using Transformers
+* Gated fusion to incorporate multimodal context
+
+## Example
+Magnet example.
+
+----
+### Question 1
+What is one critique of this example, keeping in mind the baseline two-stage architecture (text-only) and the two-stage framework with image features?
+
+----
 
 ## Results
-Brief description
+* Improves over GPT-3.5 by 16% and exceeds human performance on ScienceQA
+* Visual features help mitigate hallucinated rationales
+* Outperforms methods using just image captions
+* Two-stage framework and multimodality are keys to performance gains
 
 ## Critical Analysis
-Critiques about questions asked to language only model.
+* Evaluation limited to visual questions, should include some text-only
+* Lack of implementation details for training the rationale generator
+* Consider semantic similarity metrics, not just text overlap loss
+* Weakly supervise rationale generation instead of full annotation
+* Optimize for end task accuracy directly, not just rationale quality
 
 ## Questions
 Can mix this into rest of presentation
