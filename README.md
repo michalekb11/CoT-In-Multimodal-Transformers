@@ -37,10 +37,7 @@
 * Shared encoder-decoder architecture using Transformers
 * Gated fusion to incorporate multimodal context
 
-
-<img width="500" alt="Screenshot 2023-10-25 at 11 11 37 AM" src="https://github.com/michalekb11/CoT-In-Multimodal-Transformers/assets/109704770/8f5298ba-603d-4af8-8ac6-e46b4ed8e79b"> <img width="400" alt="Screenshot 2023-10-25 at 11 11 54 AM" src="https://github.com/michalekb11/CoT-In-Multimodal-Transformers/assets/109704770/11821cbd-e10b-4c44-a888-9e5f7f010b59">
-
-
+<img width="1285" alt="Screenshot 2023-10-25 at 3 34 59 PM" src="https://github.com/michalekb11/CoT-In-Multimodal-Transformers/assets/109704770/d8dd014c-1183-4f1b-9add-55989d92a5f7">
 
 ## Example
 <img width="1192" alt="Screenshot 2023-10-25 at 11 07 27 AM" src="https://github.com/michalekb11/CoT-In-Multimodal-Transformers/assets/109704770/4c6eff97-fb39-4641-bd8d-ac362690511e">
