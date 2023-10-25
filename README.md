@@ -19,9 +19,13 @@
 * Stage 2: Encode text + rationale from stage 1, fuse with image, predict answer
 * Shared encoder-decoder architecture using Transformers
 * Gated fusion to incorporate multimodal context
+<img width="567" alt="Screenshot 2023-10-25 at 11 11 37 AM" src="https://github.com/michalekb11/CoT-In-Multimodal-Transformers/assets/109704770/8f5298ba-603d-4af8-8ac6-e46b4ed8e79b">
+
+<img width="509" alt="Screenshot 2023-10-25 at 11 11 54 AM" src="https://github.com/michalekb11/CoT-In-Multimodal-Transformers/assets/109704770/11821cbd-e10b-4c44-a888-9e5f7f010b59">
 
 ## Example
-Magnet example.
+<img width="1192" alt="Screenshot 2023-10-25 at 11 07 27 AM" src="https://github.com/michalekb11/CoT-In-Multimodal-Transformers/assets/109704770/4c6eff97-fb39-4641-bd8d-ac362690511e">
+
 
 ----
 ### Question 1
@@ -31,9 +35,19 @@ What is one critique of this example, keeping in mind the baseline two-stage arc
 
 ## Results
 * Improves over GPT-3.5 by 16% and exceeds human performance on ScienceQA
-* Visual features help mitigate hallucinated rationales
 * Outperforms methods using just image captions
+
+<img width="1157" alt="Screenshot 2023-10-25 at 11 23 12 AM" src="https://github.com/michalekb11/CoT-In-Multimodal-Transformers/assets/109704770/a961f28f-9c68-4a5d-843e-7863746b2913">
+
+* Visual features help mitigate hallucinated rationales
 * Two-stage framework and multimodality are keys to performance gains
+
+  <img width="566" alt="Screenshot 2023-10-25 at 11 09 35 AM" src="https://github.com/michalekb11/CoT-In-Multimodal-Transformers/assets/109704770/1e47cafb-8c18-4d82-8364-666835c0af52">
+
+* Two stage framework boosts convergence (fewer epochs required to reach maximum accuracy)
+* Multimodalily boosts accuracy
+
+  <img width="580" alt="Screenshot 2023-10-25 at 11 24 40 AM" src="https://github.com/michalekb11/CoT-In-Multimodal-Transformers/assets/109704770/251abe44-fcfa-4dfb-a9c6-d6c9a33b894c">
 
 ## Critical Analysis
 * Evaluation limited to visual questions, should include some text-only
