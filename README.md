@@ -3,20 +3,29 @@
 ## Overview
 **tldr:** The authors show that chain of thought reasoning is possible in small multimodal transformers using a two-stage framework (1. Rationale generation | 2. Answer inference). Additionally, it outperforms humans and models like GPT 3.5 on a ScienceQA multiple choice benchmark by providing more reliable rationales. 
 
-### **What is chain of thought reasoning (CoT)?**
-* Chain of Thought reasoning is an approach to elicit better responses by language models by forcing the model to explain its thought process and logical reasoning before answering a question or drawing a conclusion
+### What is chain of thought reasoning (CoT)?
+* Chain of Thought reasoning is an approach to elicit better responses by language models by forcing the model to explain its thought process and logical reasoning before answering a question or drawing a conclusion.
 <div align="center">
   <img width="832" alt="Screenshot 2023-10-25 at 1 26 50 PM" src="https://github.com/michalekb11/CoT-In-Multimodal-Transformers/assets/109704770/5eb6d04b-1282-4bf1-bbfe-a61ba0366495">
 </div>
 
-### **What are the limitations of CoT prompting in text-only models?**
-* Imagine trying to read a textbook without any figures or tables. Our ability to answer complex or detailed questions about the content would be greatly hindered. This is because we learn how to reason better when we are taught the information via a variety of modalities. For example, we read about the architechture of transformers and constantly reference the corresponding diagram. Without this, we would have a more difficult time answering questions about transformers.
-* It turns out that small language models (~1B parameters) are very similar. Text-only models of this size tend to hallucinate aspects of the rationale in chain of thought prompting, leading the model to the wrong final answer. We will see an example shortly.
-* The authors hypothesize that providing these models with another data modality that they can reference (in this case, images) will improve their performance on answering multiple choice questions.
+* Typically, this helps model performance by providing the model with a richer context before giving the final answer.
+* However, the vast majority of CoT research has focused on the language modality. If we were to try a multimodal task such as asking questions about images, can we still elicit effective CoT reasoning?
 
-### **How can we implement CoT prompting in multimodal models?**
-* Two stage framework
-* Enables small 1B models to perform effective reasoning
+### Challenges of CoT reasoning in a multimodal setting
+* For situations in which arriving at the correct answer requires a visual context, text-only models struggle. The models tend to hallucinate the rationale aspect of CoT reasoning, leading them to the wrong final answer. This happens because they lack the required visual context for multimodal reasoning.
+   - For example, imagine trying to read the first few chapters of the transformer textbook without any of the diagrams. Then, you will be asked detailed questions about transformer architecture. 
+* Additionally, providing the text model with corresponding image captions results in very little performance gain. Figure captions are like a really bad dimension reduction technique for images. Lots of information is lost!
+* Finally, small models (~1B parameters) struggle to produce effective CoT reasoning at all. The authors of this paper attempt to show that they can elicit reliable and effective CoT reasoning in small models, even in a multimodal setting.
+
+### A two-stage approach to effective multimodal CoT prompting
+* The authors propose the breakdown of CoT into two steps
+   1. Rationale Generation (QCM --> R)
+   2. Answer Inference (QCMR --> A)
+  
+ <div>
+   <img width="1160" alt="Screenshot 2023-10-25 at 3 03 31 PM" src="https://github.com/michalekb11/CoT-In-Multimodal-Transformers/assets/109704770/6e076fff-9e56-4360-80f9-bdac226c4897">
+ </div>
 
 ## Architecture
 * Stage 1: Encode text and image, fuse features, generate rationale
