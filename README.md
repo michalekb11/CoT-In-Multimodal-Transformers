@@ -3,14 +3,18 @@
 ## Overview
 **tldr:** The authors show that chain of thought reasoning is possible in small multimodal transformers using a two-stage framework (1. Rationale generation | 2. Answer inference). Additionally, it outperforms humans and models like GPT 3.5 on a ScienceQA multiple choice benchmark by providing more reliable rationales. 
 
-**What is chain of thought reasoning (CoT)?**
-* Example or description
+### **What is chain of thought reasoning (CoT)?**
+* Chain of Thought reasoning is an approach to elicit better responses by language models by forcing the model to explain its thought process and logical reasoning before answering a question or drawing a conclusion
+<div align="center">
+  <img width="832" alt="Screenshot 2023-10-25 at 1 26 50 PM" src="https://github.com/michalekb11/CoT-In-Multimodal-Transformers/assets/109704770/5eb6d04b-1282-4bf1-bbfe-a61ba0366495">
+</div>
 
-**What are the limitations of CoT prompting in text only models?**
-* Hallucinating rationale
-* Maybe using multimodal CoT is better
+### **What are the limitations of CoT prompting in text-only models?**
+* Imagine trying to read a textbook without any figures or tables. Our ability to answer complex or detailed questions about the content would be greatly hindered. This is because we learn how to reason better when we are taught the information via a variety of modalities. For example, we read about the architechture of transformers and constantly reference the corresponding diagram. Without this, we would have a more difficult time answering questions about transformers.
+* It turns out that small language models (~1B parameters) are very similar. Text-only models of this size tend to hallucinate aspects of the rationale in chain of thought prompting, leading the model to the wrong final answer. We will see an example shortly.
+* The authors hypothesize that providing these models with another data modality that they can reference (in this case, images) will improve their performance on answering multiple choice questions.
 
-**How can we implement CoT promping in multimodal models?**
+### **How can we implement CoT prompting in multimodal models?**
 * Two stage framework
 * Enables small 1B models to perform effective reasoning
 
@@ -66,6 +70,9 @@ What is one critique of this example, keeping in mind the baseline two-stage arc
 Can mix this into rest of presentation
 
 ## Additional Resources
+Chain of Thought Prompting - Prompt engineering guide
+https://www.promptingguide.ai/techniques/cot
+
 DETR Vision Feature Extractor
 * https://huggingface.co/docs/transformers/model_doc/detr
 
