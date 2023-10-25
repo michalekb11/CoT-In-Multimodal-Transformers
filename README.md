@@ -19,7 +19,7 @@
 * Finally, small models (~1B parameters) struggle to produce effective CoT reasoning at all. The authors of this paper attempt to show that they can elicit reliable and effective CoT reasoning in small models, even in a multimodal setting.
 
 ### A two-stage approach to effective multimodal CoT prompting
-* The authors propose the breakdown of CoT into two steps
+* The authors propose the breakdown of CoT into two steps:
    1. Rationale Generation (QCM --> R)
    2. Answer Inference (QCMR --> A)
   
@@ -27,14 +27,20 @@
    <img width="1160" alt="Screenshot 2023-10-25 at 3 03 31 PM" src="https://github.com/michalekb11/CoT-In-Multimodal-Transformers/assets/109704770/6e076fff-9e56-4360-80f9-bdac226c4897">
  </div>
 
-## Architecture
+## Model Architecture
+* Both the rationale generation and the answer inference use the same transformer architecture (T5 - developed by Google researchers).
+* To enable multimodal CoT reasoning, the authors incorporate visual features directly into the context rather than using text summarizations such as image captions. This is accomplished via a vision feature extractor.
+
+
 * Stage 1: Encode text and image, fuse features, generate rationale
 * Stage 2: Encode text + rationale from stage 1, fuse with image, predict answer
 * Shared encoder-decoder architecture using Transformers
 * Gated fusion to incorporate multimodal context
-<img width="567" alt="Screenshot 2023-10-25 at 11 11 37 AM" src="https://github.com/michalekb11/CoT-In-Multimodal-Transformers/assets/109704770/8f5298ba-603d-4af8-8ac6-e46b4ed8e79b">
 
-<img width="509" alt="Screenshot 2023-10-25 at 11 11 54 AM" src="https://github.com/michalekb11/CoT-In-Multimodal-Transformers/assets/109704770/11821cbd-e10b-4c44-a888-9e5f7f010b59">
+
+<img width="500" alt="Screenshot 2023-10-25 at 11 11 37 AM" src="https://github.com/michalekb11/CoT-In-Multimodal-Transformers/assets/109704770/8f5298ba-603d-4af8-8ac6-e46b4ed8e79b"> <img width="400" alt="Screenshot 2023-10-25 at 11 11 54 AM" src="https://github.com/michalekb11/CoT-In-Multimodal-Transformers/assets/109704770/11821cbd-e10b-4c44-a888-9e5f7f010b59">
+
+
 
 ## Example
 <img width="1192" alt="Screenshot 2023-10-25 at 11 07 27 AM" src="https://github.com/michalekb11/CoT-In-Multimodal-Transformers/assets/109704770/4c6eff97-fb39-4641-bd8d-ac362690511e">
