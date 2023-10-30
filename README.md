@@ -43,7 +43,7 @@ To enable multimodal CoT reasoning, the authors ***incorporate visual features d
   <img width="800" alt="Screenshot 2023-10-30 at 2 37 57 PM" src="https://github.com/michalekb11/CoT-In-Multimodal-Transformers/assets/109704770/9deae835-04c4-4079-b439-c589927b9592">
 </div>
 
-## Example - Correcting hallucinated rationales
+### Example - Correcting hallucinated rationales
 The following example demonstrates that incorporating visual features directly into the context of the model can prevent the hallucination of the rationale. Here, the question, context, multiple choice options, and the image are fed into the model, which is expected to generate the "gold rationale". However, a basline text-only model cannot generate the expected rationale since it does not see the corresponding image. Therefore, the baseline model hallucinates its rationale, leading it to the wrong final answer.
 <div align="center">
   <img width="1192" alt="Screenshot 2023-10-25 at 11 07 27 AM" src="https://github.com/michalekb11/CoT-In-Multimodal-Transformers/assets/109704770/4c6eff97-fb39-4641-bd8d-ac362690511e">
@@ -51,16 +51,16 @@ The following example demonstrates that incorporating visual features directly i
 
 ----
 ### Question 1
-What is one critique of this example, keeping in mind the baseline two-stage architecture (text-only) and the two-stage framework with image features?
+The authors use this example to emphasize that incorporating vision features mitigates the issue of hallucinated rationale. What is one critique of this example, keeping in mind that the baseline two-stage architecture is text only?
 
 ----
 
-# A two-stage CoT approach boosts training convergence
-The authors propose the breakdown of CoT into two steps:
+# Two-stage CoT makes CoT possible in small models as well as boosts training convergence
+The authors' two-step breakdown of CoT involves the following:
 1. **Rationale Generation (QCM --> R):** Encode text and image, fuse features (gated fusion mechanism), generate rationale
 2. **Answer Inference (QCMR --> A):** Encode text + rationale and image, fuse features (gated fusion mechanism), predict answer
  
-## Results
+# Results
 * Improves over GPT-3.5 by 16% and exceeds human performance on ScienceQA
 * Outperforms methods using just image captions
   
