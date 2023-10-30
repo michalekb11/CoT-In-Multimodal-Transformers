@@ -18,21 +18,20 @@
 * Additionally, providing the text model with corresponding image captions results in very little performance gain. Figure captions are like a really bad dimension reduction technique for images. Lots of information is lost!
 * Finally, small models (~1B parameters) struggle to produce effective CoT reasoning at all. The authors of this paper attempt to show that they can elicit reliable and effective CoT reasoning in small models, even in a multimodal setting.
 
-### A two-stage approach to effective multimodal CoT prompting
-The authors propose the breakdown of CoT into two steps:
-   1. **Rationale Generation (QCM --> R):** Encode text and image, fuse features (gated fusion mechanism), generate rationale
-   2. **Answer Inference (QCMR --> A):** Encode text + rationale from stage 1, fuse with image (gated fusion mechanism), predict answer
-  
+### Proposed solution
+The authors propose the following two actions to make multimodal CoT reasoning effective in answering multiple choice questions.
+1.  Encode vision features directly into the input context rather than using figure captions.
+2.  Separate the CoT into 2 steps:
+    - **Rationale Generation (QCM --> R):** Encode text and image, fuse features (gated fusion mechanism), generate rationale
+    - **Answer Inference (QCMR --> A):** Encode text + rationale and image, fuse features (gated fusion mechanism), predict answer
+
 <div align="center">
   <img width="1160" alt="Screenshot 2023-10-25 at 3 03 31 PM" src="https://github.com/michalekb11/CoT-In-Multimodal-Transformers/assets/109704770/6e076fff-9e56-4360-80f9-bdac226c4897">
 </div>
 
-## Model architecture
-### Encoding vision features
-To enable multimodal CoT reasoning, the authors ***incorporate visual features directly*** into the context rather than using text summarizations such as image captions. This is accomplished via a vision feature extractor (DETR).
-
-### Text encoder and decoder
-Both the rationale generation and the answer inference use the same T5 transformer architecture (developed by Google researchers).
+# Encoding raw vision features prevents hallucination of rationale, boosting accuracy
+### Model architecture
+To enable multimodal CoT reasoning, the authors ***incorporate visual features directly*** into the context rather than using text summarizations such as image captions. This is accomplished via a vision feature extractor (DETR) that generates embeddings for each patch in the image. These features are then fused with the text embeddings gathered from the T5 architecture (developed by Google researchers). Similarly, the T5 decoder is used to generate the desired output Y.
 
 ### Formal algorithm and architecture visual
 <div align="center">
@@ -44,7 +43,8 @@ Both the rationale generation and the answer inference use the same T5 transform
   <img width="800" alt="Screenshot 2023-10-30 at 2 37 57 PM" src="https://github.com/michalekb11/CoT-In-Multimodal-Transformers/assets/109704770/9deae835-04c4-4079-b439-c589927b9592">
 </div>
 
-## Example
+## Example - Correcting hallucinated rationales
+The following example demonstrates that incorporating visual features directly into the context of the model can prevent the hallucination of the rationale. Here, the question, context, multiple choice options, and the image are fed into the model, which is expected to generate the "gold rationale". However, a basline text-only model cannot generate the expected rationale since it does not see the corresponding image. Therefore, the baseline model hallucinates its rationale, leading it to the wrong final answer.
 <div align="center">
   <img width="1192" alt="Screenshot 2023-10-25 at 11 07 27 AM" src="https://github.com/michalekb11/CoT-In-Multimodal-Transformers/assets/109704770/4c6eff97-fb39-4641-bd8d-ac362690511e">
 </div>
@@ -55,6 +55,11 @@ What is one critique of this example, keeping in mind the baseline two-stage arc
 
 ----
 
+# A two-stage CoT approach boosts training convergence
+The authors propose the breakdown of CoT into two steps:
+1. **Rationale Generation (QCM --> R):** Encode text and image, fuse features (gated fusion mechanism), generate rationale
+2. **Answer Inference (QCMR --> A):** Encode text + rationale and image, fuse features (gated fusion mechanism), predict answer
+ 
 ## Results
 * Improves over GPT-3.5 by 16% and exceeds human performance on ScienceQA
 * Outperforms methods using just image captions
