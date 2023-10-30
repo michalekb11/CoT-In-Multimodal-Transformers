@@ -1,7 +1,7 @@
-# Chain of Thought Reasoning in Multimodal Transformers
+# Multimodal Chain of Thought Reasoning in Language Transformers
 
 ## Overview
-**tldr:** The authors show that chain of thought reasoning is possible in small multimodal transformers using a two-stage framework (1. Rationale generation | 2. Answer inference). Additionally, it outperforms humans and models like GPT 3.5 on a ScienceQA multiple choice benchmark by providing more reliable rationales. 
+**tldr:** The authors show that multimodal chain of thought reasoning is possible in small language transformers using a two-stage framework (1. Rationale generation | 2. Answer inference). Additionally, it outperforms humans and models like GPT 3.5 on a ScienceQA multiple choice benchmark by providing more reliable rationales. 
 
 ### What is chain of thought reasoning (CoT)?
 * Chain of Thought reasoning is an approach to elicit better responses by language models by forcing the model to explain its thought process and logical reasoning before answering a question or drawing a conclusion.
