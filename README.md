@@ -40,7 +40,7 @@ To enable multimodal CoT reasoning, the authors ***incorporate visual features d
 <br>
 <br>
 <div align="center">
-  <img width="800" alt="Screenshot 2023-10-30 at 2 37 57 PM" src="https://github.com/michalekb11/CoT-In-Multimodal-Transformers/assets/109704770/9deae835-04c4-4079-b439-c589927b9592">
+  <img width="555" alt="Screenshot 2023-10-30 at 2 37 57 PM" src="https://github.com/michalekb11/CoT-In-Multimodal-Transformers/assets/109704770/9deae835-04c4-4079-b439-c589927b9592">
 </div>
 
 ### Example - Correcting hallucinated rationales
