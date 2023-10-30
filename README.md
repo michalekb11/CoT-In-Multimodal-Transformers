@@ -4,13 +4,13 @@
 **tldr:** The authors show that multimodal chain of thought reasoning is possible in small language transformers using a two-stage framework (1. Rationale generation | 2. Answer inference). Additionally, it outperforms humans and models like GPT 3.5 on a ScienceQA multiple choice benchmark by providing more reliable rationales prior to the answer inference step. 
 
 ### What is chain of thought reasoning (CoT)?
-* Chain of Thought reasoning is an approach to elicit better responses by language models by forcing the model to explain its thought process and logical reasoning before answering a question or drawing a conclusion.
+* Chain of Thought reasoning is an approach to elicit better responses from language models by forcing the model to explain its thought process and logical reasoning before answering a question or drawing a conclusion.
+* Typically, this helps model performance by providing the model with a richer context before giving the final answer.
+* However, the vast majority of CoT research has focused on the language modality. If we were to try a multimodal task such as asking questions about images, can we still elicit effective CoT reasoning?
+
 <div align="center">
   <img width="832" alt="Screenshot 2023-10-25 at 1 26 50 PM" src="https://github.com/michalekb11/CoT-In-Multimodal-Transformers/assets/109704770/5eb6d04b-1282-4bf1-bbfe-a61ba0366495">
 </div>
-
-* Typically, this helps model performance by providing the model with a richer context before giving the final answer.
-* However, the vast majority of CoT research has focused on the language modality. If we were to try a multimodal task such as asking questions about images, can we still elicit effective CoT reasoning?
 
 ### Challenges of CoT reasoning in a multimodal setting
 * For situations in which arriving at the correct answer requires a visual context, text-only models struggle. The models tend to hallucinate the rationale aspect of CoT reasoning, leading them to the wrong final answer. This happens because they lack the required visual context for multimodal reasoning.
@@ -19,29 +19,35 @@
 * Finally, small models (~1B parameters) struggle to produce effective CoT reasoning at all. The authors of this paper attempt to show that they can elicit reliable and effective CoT reasoning in small models, even in a multimodal setting.
 
 ### A two-stage approach to effective multimodal CoT prompting
-* The authors propose the breakdown of CoT into two steps:
-   1. Rationale Generation (QCM --> R)
-   2. Answer Inference (QCMR --> A)
+The authors propose the breakdown of CoT into two steps:
+   1. **Rationale Generation (QCM --> R):** Encode text and image, fuse features (gated fusion mechanism), generate rationale
+   2. **Answer Inference (QCMR --> A):** Encode text + rationale from stage 1, fuse with image (gated fusion mechanism), predict answer
   
- <div>
-   <img width="1160" alt="Screenshot 2023-10-25 at 3 03 31 PM" src="https://github.com/michalekb11/CoT-In-Multimodal-Transformers/assets/109704770/6e076fff-9e56-4360-80f9-bdac226c4897">
- </div>
+<div align="center">
+  <img width="1160" alt="Screenshot 2023-10-25 at 3 03 31 PM" src="https://github.com/michalekb11/CoT-In-Multimodal-Transformers/assets/109704770/6e076fff-9e56-4360-80f9-bdac226c4897">
+</div>
 
-## Model Architecture
-* Both the rationale generation and the answer inference use the same transformer architecture (T5 - developed by Google researchers).
-* To enable multimodal CoT reasoning, the authors incorporate visual features directly into the context rather than using text summarizations such as image captions. This is accomplished via a vision feature extractor.
+## Model architecture
+### Encoding vision features
+To enable multimodal CoT reasoning, the authors ***incorporate visual features directly*** into the context rather than using text summarizations such as image captions. This is accomplished via a vision feature extractor (DETR).
 
+### Text encoder and decoder
+Both the rationale generation and the answer inference use the same T5 transformer architecture (developed by Google researchers).
 
-* Stage 1: Encode text and image, fuse features, generate rationale
-* Stage 2: Encode text + rationale from stage 1, fuse with image, predict answer
-* Shared encoder-decoder architecture using Transformers
-* Gated fusion to incorporate multimodal context
-
-<img width="1285" alt="Screenshot 2023-10-25 at 3 34 59 PM" src="https://github.com/michalekb11/CoT-In-Multimodal-Transformers/assets/109704770/d8dd014c-1183-4f1b-9add-55989d92a5f7">
+### Formal algorithm and architecture visual
+<div align="center">
+  <img width="1285" alt="Screenshot 2023-10-25 at 3 34 59 PM" src="https://github.com/michalekb11/CoT-In-Multimodal-Transformers/assets/109704770/d8dd014c-1183-4f1b-9add-55989d92a5f7">
+</div>
+<br>
+<br>
+<div align="center">
+  <img width="800" alt="Screenshot 2023-10-30 at 2 37 57 PM" src="https://github.com/michalekb11/CoT-In-Multimodal-Transformers/assets/109704770/9deae835-04c4-4079-b439-c589927b9592">
+</div>
 
 ## Example
-<img width="1192" alt="Screenshot 2023-10-25 at 11 07 27 AM" src="https://github.com/michalekb11/CoT-In-Multimodal-Transformers/assets/109704770/4c6eff97-fb39-4641-bd8d-ac362690511e">
-
+<div align="center">
+  <img width="1192" alt="Screenshot 2023-10-25 at 11 07 27 AM" src="https://github.com/michalekb11/CoT-In-Multimodal-Transformers/assets/109704770/4c6eff97-fb39-4641-bd8d-ac362690511e">
+</div>
 
 ----
 ### Question 1
@@ -52,18 +58,24 @@ What is one critique of this example, keeping in mind the baseline two-stage arc
 ## Results
 * Improves over GPT-3.5 by 16% and exceeds human performance on ScienceQA
 * Outperforms methods using just image captions
-
-<img width="1157" alt="Screenshot 2023-10-25 at 11 23 12 AM" src="https://github.com/michalekb11/CoT-In-Multimodal-Transformers/assets/109704770/a961f28f-9c68-4a5d-843e-7863746b2913">
+  
+<div align="center">
+  <img width="1157" alt="Screenshot 2023-10-25 at 11 23 12 AM" src="https://github.com/michalekb11/CoT-In-Multimodal-Transformers/assets/109704770/a961f28f-9c68-4a5d-843e-7863746b2913">
+</div>
 
 * Visual features help mitigate hallucinated rationales
 * Two-stage framework and multimodality are keys to performance gains
 
+<div align="center">
   <img width="566" alt="Screenshot 2023-10-25 at 11 09 35 AM" src="https://github.com/michalekb11/CoT-In-Multimodal-Transformers/assets/109704770/1e47cafb-8c18-4d82-8364-666835c0af52">
+</div>
 
 * Two stage framework boosts convergence (fewer epochs required to reach maximum accuracy)
 * Multimodalily boosts accuracy
 
+<div align="center">
   <img width="580" alt="Screenshot 2023-10-25 at 11 24 40 AM" src="https://github.com/michalekb11/CoT-In-Multimodal-Transformers/assets/109704770/251abe44-fcfa-4dfb-a9c6-d6c9a33b894c">
+</div>
 
 ## Critical Analysis
 * Evaluation limited to visual questions, should include some text-only
