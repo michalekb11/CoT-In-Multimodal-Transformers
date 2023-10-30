@@ -55,12 +55,18 @@ The authors use this example to emphasize that incorporating vision features mit
 
 ----
 
-# Two-stage CoT makes CoT possible in small models as well as boosts training convergence
+# Two-stage CoT is necessary in small models
 The authors' two-step breakdown of CoT involves the following:
 1. **Rationale Generation (QCM --> R):** Encode text and image, fuse features (gated fusion mechanism), generate rationale
 2. **Answer Inference (QCMR --> A):** Encode text + rationale and image, fuse features (gated fusion mechanism), predict answer
+
+You can see that using a one-stage framework performs worse than no CoT at all in small models.
+
+<div align="center">
+  <img width="566" alt="Screenshot 2023-10-25 at 11 09 35 AM" src="https://github.com/michalekb11/CoT-In-Multimodal-Transformers/assets/109704770/1e47cafb-8c18-4d82-8364-666835c0af52">
+</div>
  
-# Results
+# Multimodal CoT Results
 * Improves over GPT-3.5 by 16% and exceeds human performance on ScienceQA
 * Outperforms methods using just image captions
   
@@ -69,12 +75,6 @@ The authors' two-step breakdown of CoT involves the following:
 </div>
 
 * Visual features help mitigate hallucinated rationales
-* Two-stage framework and multimodality are keys to performance gains
-
-<div align="center">
-  <img width="566" alt="Screenshot 2023-10-25 at 11 09 35 AM" src="https://github.com/michalekb11/CoT-In-Multimodal-Transformers/assets/109704770/1e47cafb-8c18-4d82-8364-666835c0af52">
-</div>
-
 * Two stage framework boosts convergence (fewer epochs required to reach maximum accuracy)
 * Multimodalily boosts accuracy
 
