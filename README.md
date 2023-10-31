@@ -1,6 +1,5 @@
 # Multimodal Chain of Thought Reasoning in Language Transformers
-.....insert citation here.....
-
+Zhang, Z., Zhang, A., Li, M., Zhao, H., Karypis, G., and Smola, A. Multimodal Chain-of-Thought Reasoning in Language Models. *ArXiv preprint,* abs/2302.00923, 2023.
 
 **Summary:** The authors show that multimodal chain of thought reasoning is possible in small language transformers using a two-stage framework (1. Rationale generation | 2. Answer inference). Additionally, by incorporating vision features directly into the context, the model outperforms humans and models like GPT 3.5 on a ScienceQA multiple choice benchmark.
 
