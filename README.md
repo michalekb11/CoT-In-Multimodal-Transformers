@@ -20,7 +20,7 @@ Zhang, Z., Zhang, A., Li, M., Zhao, H., Karypis, G., and Smola, A. Multimodal Ch
 * Finally, small models (~1B parameters) struggle to produce effective CoT reasoning at all. The authors of this paper attempt to show that they can elicit reliable and effective CoT reasoning in small models, even in a multimodal setting.
 
 ### Proposed solution
-Here, the authors attempt to use CoT reasoning to answer certain multiple choice questions from ScienceQA, most of which require a visual context to answer. In order to accomplish this, the authors propose that the following two actions be taken.
+Here, the authors attempt to use CoT reasoning to answer certain multiple choice questions from ScienceQA, most of which require a visual context to answer. In order to accomplish this, the authors propose that the following two actions be taken:
 1.  Separate the CoT into 2 steps:
     - **Rationale Generation (QCM --> R):** Encode text and image, fuse features (gated fusion mechanism), generate rationale
     - **Answer Inference (QCMR --> A):** Encode text + rationale and image, fuse features (gated fusion mechanism), predict answer
@@ -61,8 +61,18 @@ To enable multimodal CoT reasoning, the authors ***incorporate visual features d
 <div align="center">
   <img width="1285" alt="Screenshot 2023-10-25 at 3 34 59 PM" src="https://github.com/michalekb11/CoT-In-Multimodal-Transformers/assets/109704770/d8dd014c-1183-4f1b-9add-55989d92a5f7">
 </div>
+
+----
+### Question 1
+<details close>
+<summary>What does W<sub>h</sub> represent in the architecture description above? What is the function/purpose of this matrix?</summary>
 <br>
-<br>
+  
+**Answer:** W<sub>h</sub> is a learned matrix that projects the vision features into the same dimensional space as the text embeddings. This is required to enable the interaction of the language and vision features.
+</details>
+
+---
+
 <div align="center">
   <img width="555" alt="Screenshot 2023-10-30 at 2 37 57 PM" src="https://github.com/michalekb11/CoT-In-Multimodal-Transformers/assets/109704770/9deae835-04c4-4079-b439-c589927b9592">
 </div>
@@ -85,7 +95,7 @@ The following example demonstrates that incorporating visual features directly i
 
 ----
 
-# Multimodal CoT Results
+## Multimodal CoT Results
 The following table shows the performance of the authors' multimodal CoT reasoning on the ScienceQA benchmark in comparison to a variety of other models. Here are the most important results to be aware of:
 * The multimodal strategy with vision features exibitsa 16.5% increase in accuracy compared to GPT-3.5
 * This model also outperforms humans on average
@@ -112,10 +122,17 @@ The following table shows the performance of the authors' multimodal CoT reasoni
 ---
 
 ## Additional Resources
+The paper's Multimodal CoT Repository
+* https://github.com/amazon-science/mm-cot
+
 Chain of Thought Prompting - Prompt engineering guide
-https://www.promptingguide.ai/techniques/cot
+* https://www.promptingguide.ai/techniques/cot
 
 DETR Vision Feature Extractor
 * https://huggingface.co/docs/transformers/model_doc/detr
 
+T5 Papers With Code
+* https://paperswithcode.com/method/t5
 
+Learn to Explain: Multimodal Reasoning via Thought Chains for Science Question Answering
+* https://arxiv.org/abs/2209.09513
