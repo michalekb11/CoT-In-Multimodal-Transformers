@@ -109,7 +109,7 @@ The following table shows the performance of the authors' multimodal CoT reasoni
 
 ## Critical Analysis
 * The evaluation of this model could be improved. Some of the models for comparison are text-only and do not incorporate image captions. It is unfair to compare the multimodal CoT against baseline models that do not have enough information to answer the question, and this slightly inflates the results.
-* The authors grade the rationale generation using the RougeL score, which finds the length of the longest common subsequence between the predicted rationale and the gold-standard rationael. The authors should consider using a semantic similarity score (perhaps using embeddings from a transformer) to grade the predicted rationale. This may be more accurate/useful.
+* The authors grade the rationale generation using the RougeL score, which finds the length of the longest common subsequence between the predicted rationale and the gold-standard rationale. The authors should consider using a semantic similarity score (perhaps using embeddings from a transformer) to grade the predicted rationale. This may be more accurate/useful.
 
 ---
 
